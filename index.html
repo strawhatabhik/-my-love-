@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Pragya ❤️</title>
+
+<title>For Pragya</title>
 
 <style>
+
 body{
 margin:0;
-font-family:Arial, sans-serif;
+font-family:Arial;
 background:white;
 overflow:hidden;
 text-align:center;
 }
 
-/* Pages */
 .page{
 display:none;
 height:100vh;
@@ -26,13 +29,6 @@ flex-direction:column;
 display:flex;
 }
 
-h1{
-font-weight:normal;
-font-size:26px;
-color:#222;
-padding:20px;
-}
-
 button{
 padding:12px 25px;
 font-size:16px;
@@ -42,12 +38,6 @@ background:#ff4d6d;
 color:white;
 cursor:pointer;
 margin-top:15px;
-transition:0.2s;
-}
-
-button:hover{
-background:#ff1e4d;
-transform:scale(1.05);
 }
 
 img{
@@ -57,16 +47,17 @@ border-radius:12px;
 margin-bottom:20px;
 }
 
-/* Floating Hearts */
+/* hearts */
+
 .heart{
 position:fixed;
 bottom:-10px;
 color:red;
-font-size:20px;
-animation:float 6s linear forwards;
+font-size:24px;
+animation:floatUp 6s linear forwards;
 }
 
-@keyframes float{
+@keyframes floatUp{
 0%{
 transform:translateY(0);
 opacity:1;
@@ -76,112 +67,117 @@ transform:translateY(-110vh);
 opacity:0;
 }
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- PAGE 1 -->
+<!-- Page 1 -->
+
 <div class="page active" id="page1">
 
-<h1>Will you be my valentine? ❤️</h1>
+<h2>Will you be my valentine?</h2>
 
-<div style="position:relative; height:150px; width:100%;">
+<button onclick="nextPage()">Yes</button>
 
-<button id="yesBtn" onclick="nextPage()">
-Yes 😌
-</button>
-
-<button id="noBtn" style="position:absolute;">
-No 😏
-</button>
+<button id="noBtn">No</button>
 
 </div>
 
-</div>
+<!-- Page 2 -->
 
-<!-- PAGE 2 -->
 <div class="page" id="page2">
 
-<h1>Awwwww my baby 😋</h1>
+<h2>Awwwww my baby 😋</h2>
 
 <button onclick="nextPage()">suno suno 😙</button>
 
 </div>
 
-<!-- PAGE 3 -->
+<!-- Page 3 -->
+
 <div class="page" id="page3">
 
-<img src="05e2bdd05ad64ba26dc5cceaabd0dd38.jpg">
+<img src="https://raw.githubusercontent.com/strawhatabhik/Pic1/main/05e2bdd05ad64ba26dc5cceaabd0dd38.jpg">
 
 <button onclick="nextPage()">you are mineeeee 😏</button>
 
 </div>
 
-<!-- PAGE 4 -->
+<!-- Page 4 -->
+
 <div class="page" id="page4">
 
-<img src="RDT_20260106_1217534190376539112417035.jpg">
+<img src="https://raw.githubusercontent.com/strawhatabhik/Pic1/main/RDT_20260106_1217534190376539112417035.jpg">
 
 <button onclick="nextPage()">Kuch or bhi kehna hai</button>
 
 </div>
 
-<!-- PAGE 5 FINAL -->
+<!-- Page 5 -->
+
 <div class="page" id="page5">
 
-<img src="dbf75769f2ac21ef72b2b9781e5c4802.jpg">
+<img src="https://raw.githubusercontent.com/strawhatabhik/Pic1/main/dbf75769f2ac21ef72b2b9781e5c4802.jpg">
 
-<h1>
+<h2>
 I love you Pragya, you'll always be my valentine ❤️<br><br>
-alsoooo ( i just love to express yawr😋😖 )<br><br>
 Im sooo muchh blessed to have youuuuu babyyyyyy 🧿🎀🫶🩷
-</h1>
+</h2>
 
 </div>
 
 <script>
 
-let currentPage = 1;
+let page = 1;
 
 function nextPage(){
-document.getElementById("page"+currentPage).classList.remove("active");
-currentPage++;
-document.getElementById("page"+currentPage).classList.add("active");
+
+document.getElementById("page"+page).classList.remove("active");
+
+page++;
+
+document.getElementById("page"+page).classList.add("active");
+
 }
 
-/* NO BUTTON MOVES */
+/* moving no button */
 
-const noBtn = document.getElementById("noBtn");
+let noBtn = document.getElementById("noBtn");
 
-function moveNoButton(){
+noBtn.addEventListener("mouseover", move);
 
-let x = Math.random() * (window.innerWidth - 100);
-let y = Math.random() * (window.innerHeight - 100);
+function move(){
 
-noBtn.style.left = x + "px";
-noBtn.style.top = y + "px";
+let x = Math.random()*300;
+let y = Math.random()*300;
+
+noBtn.style.position="absolute";
+noBtn.style.left=x+"px";
+noBtn.style.top=y+"px";
+
 }
 
-noBtn.addEventListener("mouseover", moveNoButton);
-noBtn.addEventListener("click", moveNoButton);
-
-/* Floating Hearts */
+/* hearts */
 
 function createHeart(){
+
 let heart = document.createElement("div");
-heart.className = "heart";
-heart.innerHTML = "❤️";
-heart.style.left = Math.random() * 100 + "vw";
-heart.style.fontSize = (15 + Math.random() * 25) + "px";
+
+heart.className="heart";
+
+heart.innerHTML="&#10084;";
+
+heart.style.left=Math.random()*100+"vw";
+
 document.body.appendChild(heart);
 
-setTimeout(()=>{
-heart.remove();
-},6000);
+setTimeout(()=>heart.remove(),6000);
+
 }
 
-setInterval(createHeart, 400);
+setInterval(createHeart,400);
 
 </script>
 
