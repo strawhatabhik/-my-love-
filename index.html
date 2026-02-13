@@ -1,25 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>For Pragya</title>
+<title>For Pragya ❤️</title>
 
 <style>
 
 body{
 margin:0;
-font-family:Arial;
+padding:0;
+font-family: Arial, sans-serif;
 background:white;
 overflow:hidden;
 text-align:center;
 }
 
+/* Pages */
 .page{
 display:none;
 height:100vh;
+width:100vw;
 justify-content:center;
 align-items:center;
 flex-direction:column;
@@ -29,155 +30,134 @@ flex-direction:column;
 display:flex;
 }
 
+/* Text */
+h1{
+font-weight:normal;
+font-size:28px;
+color:#222;
+margin:20px;
+}
+
+/* Button */
 button{
-padding:12px 25px;
+padding:12px 24px;
 font-size:16px;
 border:none;
 border-radius:8px;
 background:#ff4d6d;
 color:white;
 cursor:pointer;
-margin-top:15px;
 }
 
+/* Images normal */
 img{
 max-width:80%;
 max-height:50vh;
-border-radius:12px;
 margin-bottom:20px;
+border-radius:12px;
 }
 
-/* hearts */
-
+/* Floating hearts */
 .heart{
-position:fixed;
-bottom:-10px;
+position:absolute;
 color:red;
-font-size:24px;
-animation:floatUp 6s linear forwards;
+font-size:20px;
+animation: floatUp 6s linear infinite;
 }
 
 @keyframes floatUp{
 0%{
-transform:translateY(0);
+transform:translateY(100vh);
 opacity:1;
 }
 100%{
-transform:translateY(-110vh);
+transform:translateY(-10vh);
 opacity:0;
 }
 }
 
 </style>
 </head>
-
 <body>
 
+<!-- Sound -->
+<audio id="clickSound">
+<source src="https://cdn.pixabay.com/audio/2022/03/15/audio_115b9bce6b.mp3">
+</audio>
+
 <!-- Page 1 -->
-
 <div class="page active" id="page1">
-
-<h2>Will you be my valentine?</h2>
-
-<button onclick="nextPage()">Yes</button>
-
-<button id="noBtn">No</button>
-
+<h1>Will you be my valentine? ❤️</h1>
+<button onclick="nextPage()">yes 😌</button>
 </div>
 
 <!-- Page 2 -->
-
 <div class="page" id="page2">
-
-<h2>Awwwww my baby 😋</h2>
-
+<h1>Awwwww my baby😋</h1>
 <button onclick="nextPage()">suno suno 😙</button>
-
 </div>
 
 <!-- Page 3 -->
-
 <div class="page" id="page3">
-
-<img src="https://raw.githubusercontent.com/strawhatabhik/Pic1/main/05e2bdd05ad64ba26dc5cceaabd0dd38.jpg">
-
+<img src="https://raw.githubusercontent.com/strawhatabhik/Pic1/0a5c759b7685310e7b91a7aefcbcf30ff7938e7c/05e2bdd05ad64ba26dc5cceaabd0dd38.jpg">
 <button onclick="nextPage()">you are mineeeee 😏</button>
-
 </div>
 
 <!-- Page 4 -->
-
 <div class="page" id="page4">
-
-<img src="https://raw.githubusercontent.com/strawhatabhik/Pic1/main/RDT_20260106_1217534190376539112417035.jpg">
-
+<img src="https://raw.githubusercontent.com/strawhatabhik/Pic1/2b8300c89f106b590a838d86f5c72ded286af55e/RDT_20260106_1217534190376539112417035.jpg">
 <button onclick="nextPage()">Kuch or bhi kehna hai</button>
-
 </div>
 
-<!-- Page 5 -->
-
+<!-- Page 5 FINAL -->
 <div class="page" id="page5">
 
-<img src="https://raw.githubusercontent.com/strawhatabhik/Pic1/main/dbf75769f2ac21ef72b2b9781e5c4802.jpg">
+<img src="https://raw.githubusercontent.com/strawhatabhik/Pic1/81004a7f96d3f1b68ea99130fdcb84f2ff8f7b4f/dbf75769f2ac21ef72b2b9781e5c4802.jpg">
 
-<h2>
-I love you Pragya, you'll always be my valentine ❤️<br><br>
+<h1>
+I love you Pragya, you'll always be my valentine,<br><br>
+alsoooo ( i just love to express yawr😋😖 )<br><br>
 Im sooo muchh blessed to have youuuuu babyyyyyy 🧿🎀🫶🩷
-</h2>
+</h1>
 
 </div>
 
 <script>
 
-let page = 1;
+let currentPage=1;
 
 function nextPage(){
 
-document.getElementById("page"+page).classList.remove("active");
+document.getElementById("clickSound").play();
 
-page++;
+document.getElementById("page"+currentPage).classList.remove("active");
 
-document.getElementById("page"+page).classList.add("active");
+currentPage++;
 
-}
-
-/* moving no button */
-
-let noBtn = document.getElementById("noBtn");
-
-noBtn.addEventListener("mouseover", move);
-
-function move(){
-
-let x = Math.random()*300;
-let y = Math.random()*300;
-
-noBtn.style.position="absolute";
-noBtn.style.left=x+"px";
-noBtn.style.top=y+"px";
+document.getElementById("page"+currentPage).classList.add("active");
 
 }
 
-/* hearts */
-
+/* Hearts */
 function createHeart(){
 
-let heart = document.createElement("div");
+let heart=document.createElement("div");
 
 heart.className="heart";
 
-heart.innerHTML="&#10084;";
+heart.innerHTML="❤️";
 
 heart.style.left=Math.random()*100+"vw";
 
+heart.style.fontSize=(15+Math.random()*20)+"px";
+
 document.body.appendChild(heart);
 
-setTimeout(()=>heart.remove(),6000);
+setTimeout(()=>{heart.remove()},6000);
 
 }
 
-setInterval(createHeart,400);
+setInterval(createHeart,500);
 
 </script>
 
