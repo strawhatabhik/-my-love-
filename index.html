@@ -19,10 +19,10 @@ text-align:center;
 display:none;
 height:100vh;
 width:100vw;
-display:flex;
 justify-content:center;
 align-items:center;
 flex-direction:column;
+position:relative;
 }
 
 .active{
@@ -37,7 +37,7 @@ color:#222;
 padding:20px;
 }
 
-/* Button */
+/* Buttons */
 button{
 padding:12px 25px;
 font-size:16px;
@@ -46,7 +46,8 @@ border-radius:8px;
 background:#ff4d6d;
 color:white;
 cursor:pointer;
-margin-top:15px;
+margin:10px;
+transition:0.2s;
 }
 
 /* Images */
@@ -67,49 +68,54 @@ animation:float 6s linear forwards;
 }
 
 @keyframes float{
-0%{
-transform:translateY(0);
-opacity:1;
-}
-100%{
-transform:translateY(-110vh);
-opacity:0;
-}
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(-110vh);opacity:0;}
 }
 </style>
 </head>
 <body>
 
-<!-- Cute click sound -->
+<!-- Sound -->
 <audio id="clickSound" preload="auto">
 <source src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_c9a0cbb6b0.mp3?filename=click-124467.mp3">
 </audio>
 
-<!-- Page 1 -->
+<!-- PAGE 1 -->
 <div class="page active" id="page1">
 <h1>Will you be my valentine? ❤️</h1>
-<button onclick="nextPage()">yes 😌</button>
+
+<div style="position:relative; height:150px; width:100%;">
+
+<button id="yesBtn" onclick="nextPage()">
+Yes 😌
+</button>
+
+<button id="noBtn" style="position:absolute;">
+No 😏
+</button>
+
+</div>
 </div>
 
-<!-- Page 2 -->
+<!-- PAGE 2 -->
 <div class="page" id="page2">
 <h1>Awwwww my baby😋</h1>
 <button onclick="nextPage()">suno suno 😙</button>
 </div>
 
-<!-- Page 3 -->
+<!-- PAGE 3 -->
 <div class="page" id="page3">
 <img src="https://raw.githubusercontent.com/strawhatabhik/Pic1/0a5c759b7685310e7b91a7aefcbcf30ff7938e7c/05e2bdd05ad64ba26dc5cceaabd0dd38.jpg">
 <button onclick="nextPage()">you are mineeeee 😏</button>
 </div>
 
-<!-- Page 4 -->
+<!-- PAGE 4 -->
 <div class="page" id="page4">
 <img src="https://raw.githubusercontent.com/strawhatabhik/Pic1/2b8300c89f106b590a838d86f5c72ded286af55e/RDT_20260106_1217534190376539112417035.jpg">
 <button onclick="nextPage()">Kuch or bhi kehna hai</button>
 </div>
 
-<!-- Page 5 -->
+<!-- PAGE 5 FINAL -->
 <div class="page" id="page5">
 <img src="https://raw.githubusercontent.com/strawhatabhik/Pic1/81004a7f96d3f1b68ea99130fdcb84f2ff8f7b4f/dbf75769f2ac21ef72b2b9781e5c4802.jpg">
 <h1>
@@ -120,6 +126,7 @@ Im sooo muchh blessed to have youuuuu babyyyyyy 🧿🎀🫶🩷
 </div>
 
 <script>
+
 let currentPage = 1;
 
 function nextPage(){
@@ -131,7 +138,46 @@ currentPage++;
 document.getElementById("page"+currentPage).classList.add("active");
 }
 
-/* Floating Hearts Generator */
+/* NO BUTTON CHAOS */
+
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+
+let noTexts = [
+"No 😏",
+"Are you sure? 😳",
+"Think again 😌",
+"Last chance 😭",
+"You can't escape 😈"
+];
+
+let textIndex = 0;
+let yesSize = 16;
+
+function moveNoButton(){
+
+let x = Math.random() * (window.innerWidth - 100);
+let y = Math.random() * (window.innerHeight - 100);
+
+noBtn.style.left = x + "px";
+noBtn.style.top = y + "px";
+
+/* Change text */
+textIndex++;
+if(textIndex >= noTexts.length){
+textIndex = 0;
+}
+noBtn.innerText = noTexts[textIndex];
+
+/* Grow YES button */
+yesSize += 4;
+yesBtn.style.fontSize = yesSize + "px";
+}
+
+noBtn.addEventListener("mouseover", moveNoButton);
+noBtn.addEventListener("click", moveNoButton);
+
+/* Floating hearts */
 function createHeart(){
 let heart = document.createElement("div");
 heart.className = "heart";
@@ -146,6 +192,7 @@ heart.remove();
 }
 
 setInterval(createHeart, 400);
+
 </script>
 
 </body>
