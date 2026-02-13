@@ -1,197 +1,197 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For Pragya ❤️</title>
 
 <style>
+
 body{
 margin:0;
 padding:0;
-font-family: Arial, sans-serif;
 background:white;
-overflow:hidden;
+font-family:sans-serif;
 text-align:center;
+overflow:hidden;
 }
 
-/* Pages */
 .page{
 display:none;
 height:100vh;
-width:100vw;
 justify-content:center;
 align-items:center;
 flex-direction:column;
-position:relative;
 }
 
 .active{
 display:flex;
 }
 
-/* Text */
-h1{
-font-weight:normal;
-font-size:26px;
-color:#222;
-padding:20px;
-}
-
-/* Buttons */
 button{
-padding:12px 25px;
-font-size:16px;
+padding:15px 30px;
+font-size:18px;
 border:none;
-border-radius:8px;
+border-radius:12px;
 background:#ff4d6d;
 color:white;
 cursor:pointer;
 margin:10px;
-transition:0.2s;
 }
 
-/* Images */
+button:hover{
+background:#ff1e4d;
+}
+
 img{
 max-width:80%;
-max-height:50vh;
 border-radius:12px;
 margin-bottom:20px;
 }
 
-/* Floating hearts */
+/* floating hearts */
+
 .heart{
 position:fixed;
-bottom:-10px;
+bottom:-20px;
 color:red;
 font-size:20px;
-animation:float 6s linear forwards;
+animation:float 5s linear infinite;
 }
 
 @keyframes float{
-0%{transform:translateY(0);opacity:1;}
-100%{transform:translateY(-110vh);opacity:0;}
+0%{
+transform:translateY(0);
+opacity:1;
 }
+100%{
+transform:translateY(-100vh);
+opacity:0;
+}
+}
+
+/* moving NO button */
+
+#noBtn{
+position:relative;
+}
+
 </style>
 </head>
+
 <body>
 
-<!-- Sound -->
-<audio id="clickSound" preload="auto">
-<source src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_c9a0cbb6b0.mp3?filename=click-124467.mp3">
+<audio id="clickSound">
+<source src="https://www.soundjay.com/buttons/sounds/button-16.mp3" type="audio/mpeg">
 </audio>
 
-<!-- PAGE 1 -->
+<!-- Page 1 -->
 <div class="page active" id="page1">
-<h1>Will you be my valentine? ❤️</h1>
 
-<div style="position:relative; height:150px; width:100%;">
+<h1>Will you be my Valentine? ❤️</h1>
 
-<button id="yesBtn" onclick="nextPage()">
-Yes 😌
-</button>
+<button onclick="nextPage()">Yes 😍</button>
 
-<button id="noBtn" style="position:absolute;">
-No 😏
-</button>
+<button id="noBtn" onmouseover="moveNo()">No 😏</button>
 
 </div>
-</div>
 
-<!-- PAGE 2 -->
+<!-- Page 2 -->
 <div class="page" id="page2">
-<h1>Awwwww my baby😋</h1>
-<button onclick="nextPage()">suno suno 😙</button>
+
+<h1>Awwwww my baby 😋</h1>
+
+<button onclick="nextPage()">Suno Suno 😙</button>
+
 </div>
 
-<!-- PAGE 3 -->
+<!-- Page 3 -->
 <div class="page" id="page3">
-<img src="https://raw.githubusercontent.com/strawhatabhik/Pic1/0a5c759b7685310e7b91a7aefcbcf30ff7938e7c/05e2bdd05ad64ba26dc5cceaabd0dd38.jpg">
-<button onclick="nextPage()">you are mineeeee 😏</button>
+
+<img src="05e2bdd05ad64ba26dc5cceaabd0dd38.jpg">
+
+<button onclick="nextPage()">You are mineeeee 😏</button>
+
 </div>
 
-<!-- PAGE 4 -->
+<!-- Page 4 -->
 <div class="page" id="page4">
-<img src="https://raw.githubusercontent.com/strawhatabhik/Pic1/2b8300c89f106b590a838d86f5c72ded286af55e/RDT_20260106_1217534190376539112417035.jpg">
+
+<img src="RDT_20260106_1217534190376539112417035.jpg">
+
 <button onclick="nextPage()">Kuch or bhi kehna hai</button>
+
 </div>
 
-<!-- PAGE 5 FINAL -->
+<!-- Page 5 -->
 <div class="page" id="page5">
-<img src="https://raw.githubusercontent.com/strawhatabhik/Pic1/81004a7f96d3f1b68ea99130fdcb84f2ff8f7b4f/dbf75769f2ac21ef72b2b9781e5c4802.jpg">
-<h1>
-I love you Pragya, you'll always be my valentine ❤️<br><br>
-alsoooo ( i just love to express yawr😋😖 )<br><br>
+
+<img src="dbf75769f2ac21ef72b2b9781e5c4802.jpg">
+
+<h2>
+I love you Pragya, you'll always be my valentine,<br>
+alsoooo (i just love to express yawr 😋😖),<br><br>
 Im sooo muchh blessed to have youuuuu babyyyyyy 🧿🎀🫶🩷
-</h1>
+</h2>
+
 </div>
 
 <script>
 
-let currentPage = 1;
+let current=1;
+let total=5;
+
+function playSound(){
+document.getElementById("clickSound").play();
+}
 
 function nextPage(){
-document.getElementById("clickSound").currentTime = 0;
-document.getElementById("clickSound").play();
 
-document.getElementById("page"+currentPage).classList.remove("active");
-currentPage++;
-document.getElementById("page"+currentPage).classList.add("active");
+playSound();
+
+document.getElementById("page"+current).classList.remove("active");
+
+current++;
+
+document.getElementById("page"+current).classList.add("active");
+
 }
 
-/* NO BUTTON CHAOS */
+function moveNo(){
 
-const noBtn = document.getElementById("noBtn");
-const yesBtn = document.getElementById("yesBtn");
+let btn=document.getElementById("noBtn");
 
-let noTexts = [
-"No 😏",
-"Are you sure? 😳",
-"Think again 😌",
-"Last chance 😭",
-"You can't escape 😈"
-];
+let x=Math.random()*300-150;
+let y=Math.random()*200-100;
 
-let textIndex = 0;
-let yesSize = 16;
-
-function moveNoButton(){
-
-let x = Math.random() * (window.innerWidth - 100);
-let y = Math.random() * (window.innerHeight - 100);
-
-noBtn.style.left = x + "px";
-noBtn.style.top = y + "px";
-
-/* Change text */
-textIndex++;
-if(textIndex >= noTexts.length){
-textIndex = 0;
-}
-noBtn.innerText = noTexts[textIndex];
-
-/* Grow YES button */
-yesSize += 4;
-yesBtn.style.fontSize = yesSize + "px";
+btn.style.transform="translate("+x+"px,"+y+"px)";
 }
 
-noBtn.addEventListener("mouseover", moveNoButton);
-noBtn.addEventListener("click", moveNoButton);
+/* floating hearts */
 
-/* Floating hearts */
 function createHeart(){
-let heart = document.createElement("div");
-heart.className = "heart";
-heart.innerHTML = "❤️";
-heart.style.left = Math.random() * 100 + "vw";
-heart.style.fontSize = (15 + Math.random() * 25) + "px";
+
+let heart=document.createElement("div");
+
+heart.classList.add("heart");
+
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.fontSize=Math.random()*20+10+"px";
+
+heart.style.animationDuration=Math.random()*3+2+"s";
+
 document.body.appendChild(heart);
 
 setTimeout(()=>{
 heart.remove();
-},6000);
+},5000);
+
 }
 
-setInterval(createHeart, 400);
+setInterval(createHeart,300);
 
 </script>
 
